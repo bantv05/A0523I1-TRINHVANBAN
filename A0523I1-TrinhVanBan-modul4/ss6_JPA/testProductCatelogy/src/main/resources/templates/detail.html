@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        }
+        .card-header {
+            background-color: #007bff;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            font-weight: bold;
+        }
+        .card-title {
+            margin-bottom: 0;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-body p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title text-center">Chi tiết sản phẩm</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <p th:object="${product}">
+                        <p><strong>Tên sản phẩm:</strong> <span th:text="*{product.getTenSanPham()}"></span></p>
+                        <p><strong>Giá:</strong> <span th:text="*{product.getGia()}"></span></p>
+                        <p><strong>Số lượng:</strong> <span th:text="*{product.getSoLuong()}"></span></p>
+                        <p><strong>Màu sắc:</strong> <span th:text="*{product.getMauSac()}"></span></p>
+                        <p><strong>Danh mục:</strong> <span th:text="*{product.category.getCategory()}"></span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
