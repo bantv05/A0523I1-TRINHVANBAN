@@ -1,0 +1,202 @@
+{
+  "orders": [
+    {
+      "id": "1306",
+      "ngayMua": "2024-06-05",
+      "tongTien": "234",
+      "soLuong": 3,
+      "product": {
+        "maSp": "2",
+        "name": "MacBook",
+        "gia": "1200",
+        "lsp": "Laptop"
+      }
+    },
+    {
+      "ngayMua": "2024-06-19",
+      "soLuong": 34,
+      "product": {
+        "maSp": "4",
+        "name": "Oppo F10",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "d004"
+      },
+      "id": "4oYbbFH"
+    },
+    {
+      "ngayMua": "2024-06-19",
+      "soLuong": 444,
+      "product": {
+        "maSp": "1",
+        "name": "ip 15pro",
+        "gia": "1600",
+        "lsp": "Dien thoai",
+        "id": "3722"
+      },
+      "id": "yKeomuW"
+    },
+    {
+      "ngayMua": "2024-06-21",
+      "soLuong": 22,
+      "product": {
+        "maSp": "2",
+        "name": "MacBook",
+        "gia": "1200",
+        "lsp": "Laptop",
+        "id": "b3b8"
+      },
+      "id": "X6TS4zR"
+    },
+    {
+      "ngayMua": "2024-06-19",
+      "soLuong": 345,
+      "product": {
+        "maSp": "3",
+        "name": "Sam sung",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "c7b4"
+      },
+      "id": "y_fM023"
+    },
+    {
+      "ngayMua": "2024-06-21",
+      "soLuong": 123,
+      "product": {
+        "maSp": "3",
+        "name": "Sam sung",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "c7b4"
+      },
+      "id": "N94E-kI"
+    },
+    {
+      "ngayMua": "2024-06-21",
+      "soLuong": 123,
+      "product": {
+        "maSp": "3",
+        "name": "Sam sung",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "c7b4"
+      },
+      "id": "pIq8dnc"
+    },
+    {
+      "ngayMua": "2024-06-24",
+      "soLuong": 123,
+      "product": {
+        "maSp": "3",
+        "name": "Sam sung",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "c7b4"
+      },
+      "id": "OGbSqZt"
+    },
+    {
+      "ngayMua": "2024-06-24",
+      "soLuong": 1122,
+      "product": {
+        "maSp": "3",
+        "name": "Sam sung",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "c7b4"
+      },
+      "id": "uB4v1sF"
+    },
+    {
+      "ngayMua": "2024-06-24",
+      "soLuong": 21,
+      "product": {
+        "maSp": "3",
+        "name": "Sam sung",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "c7b4"
+      },
+      "id": "4KVoOTv"
+    },
+    {
+      "ngayMua": "2024-06-24",
+      "soLuong": 555,
+      "product": {
+        "maSp": "4",
+        "name": "Oppo F10",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "d004"
+      },
+      "id": "duY65BO"
+    },
+    {
+      "ngayMua": "2024-06-24",
+      "soLuong": 599,
+      "product": {
+        "maSp": "3",
+        "name": "Sam sung",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "c7b4"
+      },
+      "id": "VVL-2Fy"
+    },
+    {
+      "ngayMua": "2024-06-24",
+      "soLuong": 12,
+      "product": {
+        "maSp": "4",
+        "name": "Oppo F10",
+        "gia": "1200",
+        "lsp": "Dien thoai",
+        "id": "d004"
+      },
+      "id": "5LMGheM"
+    },
+    {
+      "ngayMua": "2024-06-24",
+      "soLuong": 12345,
+      "product": {
+        "maSp": "2",
+        "name": "MacBook",
+        "gia": "1200",
+        "lsp": "Laptop",
+        "id": "b3b8"
+      },
+      "id": "ukd40Jp"
+    }
+  ],
+  "products": [
+    {
+      "maSp": "1",
+      "name": "ip 15pro",
+      "gia": "1600",
+      "lsp": "Dien thoai",
+      "id": "3722"
+    },
+    {
+      "maSp": "2",
+      "name": "MacBook",
+      "gia": "1200",
+      "lsp": "Laptop",
+      "id": "b3b8"
+    },
+    {
+      "maSp": "3",
+      "name": "Sam sung",
+      "gia": "1200",
+      "lsp": "Dien thoai",
+      "id": "c7b4"
+    },
+    {
+      "maSp": "4",
+      "name": "Oppo F10",
+      "gia": "1200",
+      "lsp": "Dien thoai",
+      "id": "d004"
+    }
+  ]
+}

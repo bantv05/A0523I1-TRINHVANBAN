@@ -93,3 +93,16 @@ th, td {
 .btn3:hover {
     background-color: #c82333;
 }
+.page-link{
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 10px;
+}
+nav ul{
+    display: flex;
+    margin: 10px;
+}
+nav ul li{
+    margin: 10px;
+    list-style-type: none;
+}

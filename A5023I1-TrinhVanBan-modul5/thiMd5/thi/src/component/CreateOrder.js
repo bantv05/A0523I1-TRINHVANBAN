@@ -1,76 +1,96 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import * as Order from "../service/OrderService"
 import React, {useEffect, useState} from 'react';
-import {getAllCates} from "../service/OrderService";
-function CreateOrder(){
-    const [stateOrder, setstateOder] = useState({
-        ma: '',
-        ngayMua: '',
-        tongTien: '',
+import "../css/Create.css"
+import * as Yup from 'yup';
+import axios from "axios";
+import {toast} from "react-toastify";
+import {format} from "date-fns";
+function CreateOrder() {
+    const [stateOrder, setstateOrder] = useState({
+        ngayMua: format(new Date(), 'yyyy-MM-dd'),
         soLuong: '',
         product: ''
     })
-
+    const navigate = useNavigate();
+    const validationSchema= {
+        ngayMua: Yup.date().required("Khong duoc de trong"),
+        soLuong: Yup.number()
+            .min(1, "Chất lượng phải ít nhất là 1")
+            .required("Chất lượng là bắt buộc"),
+        product: Yup.string().required("Danh mục là bắt buộc")
+    };
     const [stateProduct, setStateProduct] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
 
-    useEffect(() => {
+    useEffect( () => {
         getAllProduct();
     }, []);
     const getAllProduct = async () =>{
         const temp = await Order.getAllProduct();
         setStateProduct(temp);
     }
-    const [tongTien, setTongTien] = useState(stateOrder.soLuong * stateOrder.product.gia)
+
+    const handleSubmit = async (values, { setSubmitting }) => {
+        try {
+            values.product = selectedCategory;
+            console.log(values.category);
+            await Order.saveOrder(values);
+            toast.success("Thêm mới thành công 🤩");
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+            toast.error("Có lỗi xảy ra");
+        } finally {
+            setSubmitting(false);
+        }
+    };
+    const handleCategoryChange = (event) => {
+        const categoryValue = event.target.value;
+        try {
+            const categoryObject = JSON.parse(categoryValue);//chuyển thành đối tuơng
+            setSelectedCategory(categoryObject);
+        } catch (error) {
+            console.error("Lỗi phân tích chuỗi JSON: ", error);
+        }
+    };
+
     return(
         <Formik
-            initialValues={stateOder} onSubmit={handleSubmit} validationSchema={Yup.object(validationSchema)}>
+            initialValues={stateOrder} onSubmit={handleSubmit} validationSchema={Yup.object(validationSchema)}>
             <div className="container">
                 <div className="form">
                     <div className="title" style={{ textAlign: 'left', marginBottom: '25px', fontWeight:'700'}}>
                         <h2>Create Product</h2>
                     </div>
                     <Form>
-                        <Field type="hidden" name="ma" value={stateOder.id}/>
                         <div className="form-group">
-                            <label htmlFor="ngayMua">Name Product</label>
-                            <Field type="date" name="ngayMua" placeholder="Enter name product"/>
+                            <label htmlFor="soLuong">Số lượng</label>
+                            <Field type="number" name="soLuong" placeholder="Enter quality"
+                            ></Field>
+                            <ErrorMessage className="err" name="soLuong" component="div"/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="ngayMua">Ngày mua</label>
+                            <Field type="date" name="ngayMua" placeholder="Enter quality"
+                            ></Field>
                             <ErrorMessage className="err" name="ngayMua" component="div"/>
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="tongTien">Tổng tiền</label>
-                            <Field type="number" name="tongTien" placeholder="Enter quality"
-                                   value={}
-                            ></Field>
-                            <ErrorMessage className="err" name="quality" component="div"/>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="color">Color</label>
-                            <Field id="color" name="color" placeholder="Enter color"></Field>
-                            <ErrorMessage className="err" name="color" component="div"></ErrorMessage>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="describe">Describe</label>
-                            <Field id="describe" name="describe" placeholder="Enter describe" ></Field>
-                            <ErrorMessage className="err" name="describe" component="div"></ErrorMessage>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="category">Category</label>
-                            <Field id="category" as="select" name="category" onClick={handleCategoryChange}>
-                                <option value= ''>--Select category--</option>
+                            <label htmlFor="product">Category</label>
+                            <Field id="product" as="select" name="product" onClick={handleCategoryChange}>
+                                <option value= ''>--Select product--</option>
                                 {
-                                    stateCate.map(ct => (
+                                    stateProduct.map(ct => (
                                         <option key={ct.id} value={JSON.stringify(ct)}>{ct.name}</option>
                                     ))}
                             </Field>
-
-
-                            <ErrorMessage className="err" name="category" component="div"></ErrorMessage>
+                            <ErrorMessage className="err" name="product" component="div"/>
                         </div>
+
                         <button type="submit">Create</button>
                         <Link to="/"><button className="backbtn">Back</button></Link>
                     </Form>
@@ -79,3 +99,5 @@ function CreateOrder(){
         </Formik>
     )
 }
+
+export default CreateOrder;

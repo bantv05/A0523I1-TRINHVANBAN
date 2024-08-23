@@ -1,0 +1,161 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "code": "PROD-0001",
+      "name": "Blackmores Omega",
+      "description": "ok",
+      "type": {
+        "id": 1,
+        "name": "Thực phẩm chức năng",
+        "description": "đồ ăn"
+      },
+      "price": "598000",
+      "number": "1000",
+      "date": "2022-01-24"
+    },
+    {
+      "id": 2,
+      "code": "PROD-0002",
+      "name": "Blackmores CoQ10 150mg",
+      "description": "ok",
+      "type": {
+        "id": 1,
+        "name": "Thực phẩm chức năng",
+        "description": "đồ ăn"
+      },
+      "price": "513000",
+      "number": "100",
+      "date": "2022-10-15"
+    },
+    {
+      "code": "PROD-0003",
+      "name": "Máy đo huyết áp",
+      "price": 1350000,
+      "number": 500,
+      "date": "2023-02-03",
+      "description": "ok",
+      "type": {
+        "id": 2,
+        "name": "Thiết bị y tế",
+        "description": "y tế"
+      },
+      "id": 3
+    },
+    {
+      "code": "PROD-0004",
+      "name": "a",
+      "price": 1,
+      "number": 1,
+      "date": "2024-03-12",
+      "description": "ok",
+      "type": {
+        "id": 1,
+        "name": "Thực phẩm chức năng",
+        "description": "đồ ăn"
+      },
+      "id": 4
+    },
+    {
+      "id": "e9ce",
+      "code": "PROD-1233",
+      "name": "1",
+      "price": 1,
+      "number": 1,
+      "date": "2024-06-05",
+      "description": "ok",
+      "type": {
+        "id": 2,
+        "name": "Thiết bị y tế",
+        "description": "y tế"
+      }
+    },
+    {
+      "id": "2d7b",
+      "code": "PROD-1122",
+      "name": "đồ ăn",
+      "price": 12000,
+      "number": 12,
+      "date": "2024-06-04",
+      "description": "okla",
+      "type": {
+        "id": 2,
+        "name": "Thiết bị y tế",
+        "description": "y tế"
+      }
+    },
+    {
+      "id": "da6e",
+      "code": "PROD-0898",
+      "name": "Kim tiêm",
+      "price": 1000,
+      "number": 3,
+      "date": "2024-06-05",
+      "description": "okla",
+      "type": {
+        "id": 2,
+        "name": "Thiết bị y tế",
+        "description": "y tế"
+      }
+    },
+    {
+      "id": "74b9",
+      "code": "PROD-0323",
+      "name": "Viên uống giảm béo",
+      "price": 598000,
+      "number": 12,
+      "date": "2024-06-05",
+      "description": "ok",
+      "type": {
+        "id": 1,
+        "name": "Thực phẩm chức năng",
+        "description": "đồ ăn"
+      }
+    },
+    {
+      "id": "8185",
+      "code": "PROD-1234",
+      "name": "ban",
+      "price": 12.5,
+      "number": 12,
+      "date": "2024-06-05",
+      "description": "ok",
+      "type": {
+        "id": 2,
+        "name": "Thiết bị y tế",
+        "description": "y tế"
+      }
+    },
+    {
+      "id": "1499",
+      "code": "PROD-4444",
+      "name": "12",
+      "price": 12,
+      "number": 12,
+      "date": "2024-06-05",
+      "description": "12",
+      "type": {
+        "id": 3,
+        "name": "Dược phẩm",
+        "description": "thuốc"
+      }
+    }
+  ],
+  "type": [
+    {
+      "id": 1,
+      "name": "Thực phẩm chức năng",
+      "description": "đồ ăn"
+    },
+    {
+      "id": 2,
+      "name": "Thiết bị y tế",
+      "description": "y tế"
+    },
+    {
+      "id": 3,
+      "name": "Dược phẩm",
+      "description": "thuốc"
+    }
+  ]
+}

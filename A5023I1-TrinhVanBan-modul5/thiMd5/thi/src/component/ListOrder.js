@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Moment from "moment";
 import NotFound from "../pages/NotFound";
-import Data from "../data/db.json"
+import axios from "axios";
 
 
 function ListOrder() {
@@ -15,12 +15,12 @@ function ListOrder() {
     const [input, setInput] = useState('');
 
     // phân trang;
-    const [currentPage, setCurrentPage] = useState(1);
-    const recordPerPage = 2;
+    const [currentPage, setCurrentPage] = useState(1);//trang đầu tiên
+    const recordPerPage = 5;
     const lastIndex = recordPerPage * currentPage;
     const firstIndex = lastIndex - recordPerPage;
-    const record = Data.orders.slice(lastIndex, firstIndex);
-    const npage = Math.ceil(Data.orders.length /recordPerPage);
+    const record = order.slice(firstIndex, lastIndex);
+    const npage = Math.ceil(order.length /recordPerPage);
     const numbers = [...Array(npage + 1).keys()].slice(1);
 
     const getAllOrder = async () => {
@@ -33,8 +33,10 @@ function ListOrder() {
     }
 
     useEffect(() => {
-        getAllOrder();
         getAllProduct();
+    }, []);
+    useEffect(() => {
+        getAllOrder();
     }, []);
 
     const handleDelete = async (id, name) => {
@@ -42,7 +44,7 @@ function ListOrder() {
         if (confirm) {
             await Order.deleteOrder(id);
             getAllOrder();
-            toast.success(" Xóa thành công 🤩");
+            toast.success("Xóa thành công 🤩");
         }
     }
 
@@ -50,8 +52,8 @@ function ListOrder() {
         return order.soLuong * order.product.gia;
     }
 
-    const search = async (valueI, input) => {
-        const temp = await Order.searchProduct(valueI, input);
+    const search = async (type, value) => {
+        const temp = await Order.searchProduct(type, value);
         setOrder(temp);
     }
 
@@ -60,27 +62,47 @@ function ListOrder() {
         if(name === 'input') setInput(value);
         if(name === 'type') setValue(value);
     }
-    useEffect(() => {
-        search(valueI,input);
-    }, [valueI,input]);
+
+    // useEffect(() => {
+    //         search(valueI, input);
+    // }, [valueI, input]);
 
     // () phan trang
     const changePrev = () =>{
-        if(currentPage !== fi)
+        if(currentPage > 1){
+            setCurrentPage(currentPage - 1);
+        }
     }
-    const changeNPage = () =>{
-
+    const changeNPage = (id) =>{
+        setCurrentPage(id);
     }
     const changeNext = () =>{
+        if(currentPage < npage){
+            setCurrentPage(currentPage + 1);
+        }
+    }
 
+    const top10Product = async () =>{
+        const temp = await Order.limitTop10();
+        setOrder(temp);
+    }
+    const onsubmit = (e) =>{
+        e.preventDefault();
+        search(valueI, input);
+    }
+
+    const reset = () =>{
+        getAllOrder();
     }
     return (
         <div className="container">
             <div className="content">
                 <form style={{ display: "flex" }}>
                     <div>
-                        <input name="input" id="input" placeholder="Tìm kiếm loại sản phẩm" onChange={handleSearch} type="text"/>
-                        <select
+                        <input name="input" id="input" placeholder="Tìm kiếm mã sản phẩm"
+                               onChange={handleSearch}
+                               type="text"/>
+                        < select
                             style={{ width: 300 }}
                             name="type"
                             onChange={handleSearch}
@@ -89,11 +111,14 @@ function ListOrder() {
                             {product.map((item, key) => (
                                 <option key={key} value={item.name}>{item.name}</option>
                             ))}
-                            {/*<button type="submit">Search</button>*/}
-                            {/*<button onClick={reset}>Reset</button>*/}
                         </select>
                     </div>
+                    <div>
+                        <button onClick={onsubmit}>Search</button>
+                        <button onClick={reset}>Reset</button>
+                    </div>
                 </form>
+                <input name="top10" style={{width:150, background:"green", color:"white"}} onClick={top10Product} type="button" value="Product top 5"/>
                 <h1 className="title">List Product</h1>
                 <div className="btnAddn">
                     <Link to="/create" className="btnAdd">Add+</Link>
@@ -116,7 +141,7 @@ function ListOrder() {
                     {record.length > 0 ? (
                         record.map((order, key) => (
                             <tr key={key}>
-                                <td>{key + 1}</td>
+                                <td>{firstIndex + key + 1}</td>
                                 <td>{order.id}</td>
                                 <td>{order.product.name}</td>
                                 <td>{Moment(order.ngayMua).format("DD-MM-yyyy")}</td>

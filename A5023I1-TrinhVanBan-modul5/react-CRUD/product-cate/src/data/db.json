@@ -1,0 +1,47 @@
+{
+  "product": [
+    {
+      "id": "2",
+      "name": "Iphone 15 pro max ok",
+      "quality": "20",
+      "color": "Gold",
+      "describe": "So beautiful",
+      "category": {
+        "id": "2",
+        "name": "computer"
+      }
+    },
+    {
+      "id": "4174",
+      "name": "samsung",
+      "quality": 12,
+      "color": "whitr",
+      "describe": "Rat tuyet voi",
+      "category": {
+        "id": "2",
+        "name": "computer"
+      }
+    },
+    {
+      "id": "2151",
+      "name": "ok ",
+      "quality": 9,
+      "color": "ok",
+      "describe": "ok",
+      "category": {
+        "id": "2",
+        "name": "computer"
+      }
+    }
+  ],
+  "category": [
+    {
+      "id": "1",
+      "name": "smart phone"
+    },
+    {
+      "id": "2",
+      "name": "computer"
+    }
+  ]
+}

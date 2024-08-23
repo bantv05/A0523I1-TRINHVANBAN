@@ -1,0 +1,6 @@
+create-react-app:
+b1: npx create-react-app my-app
+b2: Thực thi câu lệnh sau để trỏ tới my-app
+	- cd my-app
+b3: Thực thi câu lệnh sau để chạy dự án
+	- npm start

@@ -1,0 +1,20 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "ban",
+      "age": 20,
+      "address": "Ngo Quyen"
+    }
+  ],
+  "classrooms": [
+    {
+      "id": 1,
+      "nameClass": "A0623I1"
+    },
+    {
+      "id": 2,
+      "nameClass": "A0823I1"
+    }
+  ]
+}

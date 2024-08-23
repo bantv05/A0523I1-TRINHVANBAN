@@ -1,0 +1,2 @@
+export const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS';
+export const CREATE_STUDENT = 'CREATE_STUDENT';

@@ -1,67 +1,58 @@
 import {Link} from "react-router-dom";
-import * as Oder from "../service/OrderService"
 import "../css/List.css"
 import {useEffect, useState} from "react";
-import * as Order from "../service/OrderService"
+import * as Product from "../service/ProductService"
 import {toast} from "react-toastify";
 import Moment from "moment"
 import NotFound from "../pages/NotFound";
 function ListProduct(){
     const [order, setOrder] = useState([]);
-    const [product, setProduct] = useState([]);
+    const [type, setType] = useState([]);
     const [records, setRecords] = useState(order);
-    const [selectedProduct, setSelectedProduct] = useState("");
+    const [selectedProduct, setSelectedProduct] = useState('');
 
-    const getAllOrder = async () => {
-        const temp = await Order.getAllOrder();
-        setOrder(temp);
+    const getAllProduct = async () => {
+        const temp = await Product.getAllProduct();
+        await setOrder(temp);
         setRecords(temp);
     }
 
-    const getAllProduct = async () => {
-        const temp = await Order.getAllProduct();
-        setProduct(temp);
+    const getAllType = async () => {
+        const temp = await Product.getAllType();
+        setType(temp);
     }
 
-    useEffect(() => {
-        getAllOrder();
-    }, []);
     useEffect(() => {
         getAllProduct();
     }, []);
+    useEffect(() => {
+        getAllType();
+    }, []);
     const Filter = (event) => {
-        setRecords(order.filter(f => f.product.name.toLowerCase().includes(event.target.value)))
-    }
-
-    const handleDelete = async (id, name) =>{
-        const confirm = window.confirm("Bạn có muốn xóa "+name+" không?");
-        if(confirm){
-            await Order.deleteOrder(id);
-            setOrder(prevState => prevState.filter(product => product.id !== id));
-            toast.success("👌 Xóa thành công");
-        }
-    }
-    const handleChange = (order) =>{
-            return order.soLuong * order.product.gia;
+        setRecords(order.filter(f => f.name.toLowerCase().includes(event.target.value)))
     }
 
     const handleSearch = (e) => {
         setSelectedProduct(e.target.value);
-        setRecords(order.filter(f => f.product.name.toLowerCase().includes(e.target.value.toLowerCase())))
+        const temp = order.filter(f => f.name.toLowerCase().includes(e.target.value))
+        setRecords(temp)
     }
     let stt = 1;
     return(
         <div className="container">
             <div className="content">
-                <input placeholder="Enter search term" aria-label="Enter search term" onChange={Filter}/>
-                <select style={{width: 300}} name="" id="" onChange={handleSearch} value={selectedProduct}>
-                    <option value="">--Select search--</option>
+                <div style={{display: "flex"}}>
+                    <input style={{width: 200, marginRight: 10}} placeholder="Enter search term" aria-label="Enter search term" onChange={Filter}/>
+                    <select style={{width: 300}} onChange={handleSearch} value={selectedProduct}>
+                        <option value="">--Select search--</option>
                         {
-                            product.map(item => (
-                                <option id={item.maSp} value={item.name}>{item.name}</option>
+                            type.map(item => (
+                                <option id={item.id} value={item.name}>{item.name}</option>
                             ))
                         }
-                </select>
+                    </select>
+                    <input style={{width: 100,  marginLeft: 10}} type="button" value="Tìm kiếm"/>
+                </div>
                 <h1 className="title">List Product</h1>
                 <div className="btnAddn">
                     <Link to="/create" className="btnAdd">Add+</Link>
@@ -70,36 +61,26 @@ function ListProduct(){
                     <thead>
                     <tr className="row">
                         <th>STT</th>
-                        <th>Mã đơn hàng</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Ngày mua</th>
+                        <th>Code</th>
+                        <th>Name product</th>
+                        <th>Date</th>
+                        <th>Thể loại</th>
                         <th>Giá</th>
                         <th>Số lượng</th>
-                        <th>Loại sản phẩm</th>
-                        <th>Tổng tiền</th>
-                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     {
                         records.length > 0 ? (
                             <>
-                                {records.map((order, key) => (
+                                {records.map((product, key) => (
                                     <tr key={key}>
                                         <td>{stt++}</td>
-                                        <td>{order.id}</td>
-                                        <td>{order.product.name}</td>
-                                        <td>{Moment(order.ngayMua).format("DD/MM/yyyy")}</td>
-                                        <td>{order.product.gia}</td>
-                                        <td>{order.soLuong}</td>
-                                        <td>{order.product.lsp}</td>
-                                        <td>{handleChange(order)}</td>
-                                        <td className="button">
-                                            <Link to={`/update/`+ order.id}>
-                                                <button className="btn2">Update</button>
-                                            </Link>
-                                            <button onClick={(e) => handleDelete(order.id, order.product.name)} className="btn3">Delete</button>
-                                        </td>
+                                        <td>{product.code}</td>                                        <td>{product.name}</td>
+                                        <td>{Moment(product.date).format("DD/MM/yyyy")}</td>
+                                        <td>{product.type.name}</td>
+                                        <td>{product.price}</td>
+                                        <td>{product.number}</td>
                                     </tr>
                                 ))}
                             </>
